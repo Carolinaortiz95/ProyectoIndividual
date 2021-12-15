@@ -14,15 +14,16 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 const getApiInfo = async () => {
- const apiURL = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`)
- const apiInfo = await apiURL.data.results.map(e => {
+ const apiURL = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`)
+ 
+ const apiInfo = apiURL.data.results.map(e => {
             return {
                 ID: e.id, 
                 name: e.title,
-                image: e.image,
-                typeDiet: e.diets.map(el => el), 
+                image: e.image, 
                 score : e.spoonacularScore,   
                 dishTypes: e.dishTypes.map(el => el), 
+                diets: e.diets,
                 summary: e.summary,            
                 healthScore: e.healthScore,    
                 steps: e.analyzedInstructions
@@ -97,7 +98,7 @@ diets.forEach(el => {
 
 
 router.post('/recipe', async (req, res) => {
-  let {name, summary, score, healthScore, steps, typeDiet, createdINBd} = req.body
+  let {name, summary, score, healthScore, steps, diets, createdINBd} = req.body
   let recipeCreated = await Recipe.create({
       name, 
       summary,
@@ -107,9 +108,9 @@ router.post('/recipe', async (req, res) => {
       createdINBd
   })
 
-  for (let i = 0; i < typeDiet.length; i++) {
+  for (let i = 0; i < diets.length; i++) {
      let diet = await Diet.findOne({
-         where: {name: typeDiet[i]}
+         where: {name: diets[i]}
      })
       recipeCreated.addDiet(diet)
   }
