@@ -55,7 +55,7 @@ const getAllRecipes = async () => {
 
 
 
-router.get('/', async (req,res) => {
+router.get('/recipes', async (req,res) => {
  const name = req.query.name
  const recipesTotal = await getAllRecipes()
 

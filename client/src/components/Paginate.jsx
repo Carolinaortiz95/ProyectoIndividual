@@ -4,8 +4,8 @@ import React from "react";
 export default function Paginado ({recipesPerPage, allRecipes, paginado}) {
 const pageNumers = []
 
-for (let i = 0; i <= Math.ceil(allRecipes/recipesPerPage); i++) {
-    pageNumers.push(i+1)   
+for (let i = 1; i <= Math.ceil(allRecipes/recipesPerPage); i++) {
+    pageNumers.push(i)   
 }
 
 return(
