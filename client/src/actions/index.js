@@ -22,12 +22,18 @@ export function getDiets() {
   }
 
 export function filterRecipesByDiet (payload){
-   console.log(payload)
-    return {
-    type: 'FILTER_BY_DIET',
-    payload,
-    }
+  return {
+  type: 'FILTER_BY_DIET',
+  payload,
+   }
+}
 
+export function postRecipe (payload){
+  return async function (dispatch){
+  const data = await axios.post("http://localhost:3001/recipe", payload)
+  return data
+}
+ 
 }
 
 export function filterByName(payload) {

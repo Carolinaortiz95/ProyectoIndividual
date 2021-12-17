@@ -24,6 +24,11 @@ switch (action.type){
             ...state,
             diets: action.payload
         }
+
+    case 'POST_RECIPE':
+        return{
+            ...state,
+        }
        
         case 'FILTER_BY_DIET':
             const allRecipes = state.allRecipes 

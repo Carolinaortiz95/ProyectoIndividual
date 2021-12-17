@@ -98,6 +98,7 @@ diets.forEach(el => {
 
 
 router.post('/recipe', async (req, res) => {
+    console.log("NO CREA",req.body)
   let {name, summary, score, healthScore, steps, diets, createdINBd} = req.body
   let recipeCreated = await Recipe.create({
       name, 

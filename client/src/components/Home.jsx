@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {filterRecipesByDiet, getRecipes, filterByName, filterByScore} from "../actions";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginate";
 import SearchBar from "./SearchBar";
@@ -58,7 +58,7 @@ function handleOrderByScore(e){
 
 return (
     <div>
-<Link to= "/">CREAR RECETA</Link>
+<Link to= "/recipe">CREAR RECETA</Link>
 <h1>RECIPES PAGE</h1>
 <div>
 <SearchBar/>
@@ -97,7 +97,7 @@ return (
       return(
       <div>
         <Link to = {"/home/" + el.id}>
-          <Card name={el.name} diet={el.diets} image= {el.image}/> 
+          <Card name={el.name} diet={el.diets} image= {el.image ? el.image : <img src = 'https://image.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg' />}/> 
         </Link>
       </div>
       )
