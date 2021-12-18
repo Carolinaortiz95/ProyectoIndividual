@@ -1,5 +1,6 @@
 const initialState = {
     recipes : [],
+    detail : [],
     diets: [],
     allRecipes: []
 }
@@ -31,16 +32,17 @@ switch (action.type){
         }
        
         case 'FILTER_BY_DIET':
-            const allRecipes = state.allRecipes 
-            let dietsFiltered = 
-             action.payload === "All" 
-                ? state.allRecipes
-                : allRecipes.filter((el) => el.diets.includes(action.payload)) 
-      
-            return {
-              ...state,
-              recipes: dietsFiltered, 
-            }
+            const allRecipes= state.allRecipes
+            const dietsFilter = allRecipes.filter(recipe => recipe.diets.find(diet => {
+              console.log(diet)  
+              if (diet.name === action.payload) {
+                return recipe
+              }
+            }))
+            return{
+                ...state,
+                recipes: dietsFilter
+            } 
 
         case 'FILTER_BY_NAME': 
         let orderName = action.payload === "asc" ?
@@ -80,14 +82,18 @@ switch (action.type){
          state.recipes.sort(function (a, b) {
 
           return b.score - a.score;
-        });
+        })
       
         return {
             ...state,
             recipes: orderScore,
-    };
+    }
 
-        
+    case 'GET_DETAIL':
+        return{
+            ...state,
+            detail: action.payload
+        }
       
     default: 
     return state

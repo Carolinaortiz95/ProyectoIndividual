@@ -96,8 +96,8 @@ return (
   {currentRecipes?.map((el) =>{
       return(
       <div>
-        <Link to = {"/home/" + el.id}>
-          <Card name={el.name} diet={el.diets} image= {el.image ? el.image : <img src = 'https://image.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg' />}/> 
+        <Link to = {`recipes/${el.ID}`}>
+          <Card  id={el.ID} name={el.name} diet={el.diets} image= {el.image ? el.image : <img src = 'https://image.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg' />}/> 
         </Link>
       </div>
       )

@@ -17,17 +17,17 @@ const getApiInfo = async () => {
  const apiURL = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`)
  
  const apiInfo = apiURL.data.results.map(e => {
-            return {
-                ID: e.id, 
-                name: e.title,
-                image: e.image, 
-                score : e.spoonacularScore,   
-                dishTypes: e.dishTypes.map(el => el), 
-                diets: e.diets,
-                summary: e.summary,            
-                healthScore: e.healthScore,    
-                steps: e.analyzedInstructions
-            }
+    return {
+        ID: e.id, 
+        name: e.title,
+        image: e.image, 
+        score : e.spoonacularScore,   
+        dishTypes: e.dishTypes.map((d) => {return{name:d}}), 
+        diets: e.diets.map((d) => {return{name:d}}),
+        summary: e.summary,            
+        healthScore: e.healthScore,    
+        steps: e.analyzedInstructions
+    }
  })
    return apiInfo   //me traigo la info de la api
 }       
@@ -120,7 +120,7 @@ router.post('/recipe', async (req, res) => {
 
 
 
-router.get('/:id', async (req, res) => {
+router.get('/recipes/:id', async (req, res) => {
     const id = req.params.id;
     const allRecipes = await getAllRecipes();
     if(id) {
