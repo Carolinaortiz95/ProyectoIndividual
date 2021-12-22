@@ -83,16 +83,16 @@ return (
         <option value="fodmap friendly"> Fodmap friendly</option>
         <option value="whole 30"> Whole 30</option>
       </select>
+  <button onClick = {e=>{handleClick(e)}}>  
+    Back to all recipes
+  </button> 
     
  <Paginado
  recipesPerPage = {recipesPerPage} 
  allRecipes = {allRecipes.length}
  paginado = {paginado} 
  />
-   <button onClick = {e=>{handleClick(e)}}>  
-    Volver a todas las recetas
-   </button>
-
+   
   {currentRecipes?.map((el) =>{
       return(
       <div>
@@ -103,6 +103,7 @@ return (
       )
       })
  }
+
 </div>
     </div>
 )

@@ -33,13 +33,14 @@ switch (action.type){
        
         case 'FILTER_BY_DIET':
             const allRecipes= state.allRecipes
-            const dietsFilter = allRecipes.filter(recipe => recipe.diets.find(diet => {
-              console.log(diet)  
-              if (diet.name === action.payload) {
-                return recipe
-              }
+            const dietsFilter = action.payload === "All" ? state.allRecipes :
+             allRecipes.filter(recipe => recipe.diets.find(diet => {
+              //console.log(diet)  
+            if (diet.name === action.payload) {
+             return recipe
+              }   
             }))
-            return{
+             return{
                 ...state,
                 recipes: dietsFilter
             } 
