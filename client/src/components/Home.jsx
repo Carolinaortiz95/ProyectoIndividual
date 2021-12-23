@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginate";
 import SearchBar from "./SearchBar";
+import styles from "../styles/Home.module.css";
 
 
 export default function Home(){
@@ -57,20 +58,31 @@ function handleOrderByScore(e){
 
 
 return (
-    <div>
-<Link to= "/recipe">CREAR RECETA</Link>
-<h1>RECIPES PAGE</h1>
+  
+<div className={styles.container}>
+  
+ <Link className={styles.button2}
+to= "/recipe">CREATE RECIPE</Link>
 <div>
+   <h1 className={styles.page}
+  >RECIPE'S PAGE</h1>
+</div>
+
+<div className={styles.bordercont}>
+ 
 <SearchBar/>
-  <select onChange={(e) => handleOrderByName(e)}>
+  <select className={styles.select}
+  onChange={(e) => handleOrderByName(e)}>
         <option value="asc">A to Z</option>   {/*necesito pasarle un value para poder mandar las cosas por payload*/}
         <option value="desc">Z to A</option> {/*me permite acceder y preg el valor de las opciones, haga la logica con ese valor y lo entienda la accion  */}
   </select>
-  <select onChange={(e) => handleOrderByScore(e)}>
+  <select className={styles.select}
+  onChange={(e) => handleOrderByScore(e)}>
         <option value="high"> High score </option>
         <option value="low"> Low score </option>
   </select>
-  <select onChange={(e) => handleDiets(e)}>
+  <select className={styles.select}
+   onChange={(e) => handleDiets(e)}>
         <option value="All"> All diets</option>
         <option value="gluten free"> Gluten free</option>
         <option value="dairy free"> Dairy free</option>
@@ -83,27 +95,29 @@ return (
         <option value="fodmap friendly"> Fodmap friendly</option>
         <option value="whole 30"> Whole 30</option>
       </select>
-  <button onClick = {e=>{handleClick(e)}}>  
-    Back to all recipes
+  <button className={styles.button}
+   onClick = {e=>{handleClick(e)}}>  
+    BACK TO ALL RECIPES
   </button> 
     
- <Paginado
- recipesPerPage = {recipesPerPage} 
- allRecipes = {allRecipes.length}
- paginado = {paginado} 
- />
+ 
    
   {currentRecipes?.map((el) =>{
       return(
-      <div>
-        <Link to = {`recipes/${el.ID}`}>
+      <div className={styles.cards}>
+        <Link className={styles.link}
+         to = {`recipes/${el.ID}`}>
           <Card  id={el.ID} name={el.name} diet={el.diets} image= {el.image ? el.image : <img src = 'https://image.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg' />}/> 
         </Link>
       </div>
       )
       })
  }
-
+<Paginado
+ recipesPerPage = {recipesPerPage} 
+ allRecipes = {allRecipes.length}
+ paginado = {paginado} 
+ />
 </div>
     </div>
 )

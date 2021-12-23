@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Hind+Siliguri&family=Licorice&family=Zen+Dots&display=swap');
+
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    min-width: 100vh;   
+    background:linear-gradient(rgba(5, 7, 12, 0.198), rgba(5, 7, 12, 0.65)), url(2.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    
+}
+    
+  
+
+.select{
+    
+    border: solid 2px rgba(28, 29, 28, 0.418);
+    border-radius: 23px;
+    text-indent: 1px;
+    border-color:#1c1d1c;
+    height: 28px;
+    font-weight: 510;
+    text-align: left;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+    opacity: 0.40;
+}  
+
+.button{
+    border:2px solid #1c1d1c;
+    color: #4a4a47;
+    height: 28px;
+    border-radius: 23px;
+    padding: 0 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 540;
+    letter-spacing: 0.1em;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+    opacity: 0.40;
+    
+    
+    
+}
+
+.button:disabled {
+    pointer-events: none;
+  }
+  
+  .button:hover {
+    color: #fff;
+    background-color: #4a4a47;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .button:active {
+    box-shadow: none;
+    transform: translateY(0);
+  } 
+
+  .button2 {
+    background-color: transparent;
+    border: 2px solid #060509;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: rgba(14, 13, 13, 0.972);
+    cursor: pointer;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    outline: none;
+    padding: 0 30px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    opacity:none;
+    
+ 
+  
+  }
+  
+  .button2:disabled {
+    pointer-events: none;
+  }
+  
+  .button2:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  
+  .button2:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Abel', sans-serif;
+    font-size: 21px;
+    text-transform: capitalize;  
+  }
+
+  .link {    
+    margin: 10px;
+    float: left;
+    text-decoration: none;
+    opacity: none;
+
+   
+}
+
+.page{
+  font-family: 'Zen Dots', cursive;
+  color: rgba(14, 13, 13, 0.972);
+  font-size: 70px;
+  margin-top: 1px;
+}
+
+.bordercont{
+  background: rgba(5, 7, 12, 0.876);
+  padding: 10px;
+  margin: 0  auto;
+  width: 800px;
+  border-radius: 25px;
+  font-family: 'Roboto', sans-serif;
+  opacity: none;
+  color: lavender;
+  margin-bottom: 100px;
+}
+ 

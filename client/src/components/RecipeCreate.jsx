@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {postRecipe, getDiets} from "../actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import styles from "../styles/RecipeCreate.module.css";
 
 
 function validate(input) {
@@ -87,13 +88,14 @@ export default function RecipeCreate(){
     }
 
     return(
-        <div>
-            <Link to = '/home'><button>VOLVER</button></Link>
-            <h1>Crea tu receta!</h1>
-            <form onSubmit= {(e) => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label>
-                    <input
+        <div className={styles.contains}> 
+            <Link to = '/home'><button className={styles.buttonHome}>BACK</button></Link>
+            <form className={styles.form}
+             onSubmit= {(e) => handleSubmit(e)}>
+                <div >
+                <h1>Create your recipe!</h1>
+                    <p>Recipe name:</p>
+                    <input className={styles.input}
                     type = "text"
                     value = {input.name}
                     required
@@ -104,8 +106,8 @@ export default function RecipeCreate(){
 
                 </div>
                 <div>
-                    <label>Summary:</label>
-                    <input
+                    <p>Summary:</p>
+                    <textarea className={styles.summary}
                     type= "text"
                     value = {input.summary}
                     required
@@ -115,15 +117,15 @@ export default function RecipeCreate(){
                      {errors.summary && <p> {errors.summary}</p>}</div>
                 <div>
                 <div>
-                    <label>Optional Image: </label>
-                    <input
+                    <p>Optional Image: </p>
+                    <input className={styles.input}
                     type="text" 
                     name="image"
                     onChange={(e) => handleChange(e)}
                     />
                 </div>
-                    <label>Score:</label>
-                    <input 
+                    <p>Score:</p>
+                    <input className={styles.input}
                     type = "number"
                     value = {input.score}
                     name = "score"
@@ -133,8 +135,8 @@ export default function RecipeCreate(){
 
                 </div>
                 <div>
-                    <label>Health Score:</label>
-                    <input 
+                    <p>Health Score:</p>
+                    <input className={styles.input}
                     type = "number"
                     value = {input.healthScore}
                     name = "healthScore"
@@ -144,29 +146,35 @@ export default function RecipeCreate(){
 
                 </div>
                 <div>
-                    <label>Steps:</label>
-                    <input 
-                    type = "text"
+                    <p>Steps:</p>
+                    <textarea className={styles.steps}
+                    type = "textarea"
                     value = {input.steps}
                     name = "steps"
                     onChange = {(e) => handleChange(e)}
                     />
                 </div>
                 <h3>Select diets </h3>
-                <select onChange = {(e) => handleSelect(e)}>
+                <select className={styles.diets}
+                onChange = {(e) => handleSelect(e)}>
                     {diets.map((d) => (
                         <option value ={d.name}>{d.name}</option>
                     ))}
                 </select>
-                <ul><li>{input.diets.map(el => el + ", ")}</li></ul>
-                <button type = "submit">Crar receta</button>
-            </form>
-            {input.diets.map(el =>
-                <div>
+                <ul><li>{input.diets.map(el => el.toUpperCase() + ", ")}</li></ul>
+                {input.diets.map(el =>
+                <div className={styles.subcontains}>
                     <p>{el}</p>
-                    <button onClick = {() => HandleDelete(el)}>x</button>
+                    <button className={styles.buttonDelete}
+                     onClick = {() => HandleDelete(el)}>X</button>
                 </div>
             )}
+                <button className={styles.buttonCreate}
+                 type = "submit">Crate recipe</button>
+
+
+            </form>
+            
         </div>
     )
 }
