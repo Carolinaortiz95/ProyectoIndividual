@@ -10,6 +10,6 @@ module.exports = (sequelize) => {
     allowNull: false,
     }
 
-   //no agrego id porque lo hace automaticamente sql (en este caso nos sirve)
+   //no agrego id porque lo hace automaticamente sql (en este caso me sirve)
 });
 };

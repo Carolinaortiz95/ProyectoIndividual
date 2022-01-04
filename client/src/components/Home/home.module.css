@@ -115,6 +115,7 @@
   .cards {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     font-family: 'Abel', sans-serif;
     font-size: 21px;
     text-transform: capitalize;  
@@ -140,7 +141,8 @@
   background: rgba(5, 7, 12, 0.876);
   padding: 10px;
   margin: 0  auto;
-  width: 800px;
+  justify-content: center;
+  width: 1200px;
   border-radius: 25px;
   font-family: 'Roboto', sans-serif;
   opacity: none;

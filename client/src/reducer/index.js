@@ -9,11 +9,11 @@ const initialState = {
 function rootReducer (state = initialState, action) {
 switch (action.type){
     case 'GET_RECIPES':
-    return {
+        return {
         ...state,
         recipes: action.payload,     //en mi estado recipes, manda todo lo que envie la accion getrecipes
         allRecipes: action.payload
-    }
+        }
     
     case 'GET_NAME_RECIPES':
         return {
@@ -31,7 +31,7 @@ switch (action.type){
             ...state,
         }
        
-        case 'FILTER_BY_DIET':
+    case 'FILTER_BY_DIET':
             const allRecipes= state.allRecipes
             const dietsFilter = action.payload === "All" ? state.allRecipes :
              allRecipes.filter(recipe => recipe.diets.find(diet => {
@@ -45,7 +45,7 @@ switch (action.type){
                 recipes: dietsFilter
             } 
 
-        case 'FILTER_BY_NAME': 
+    case 'FILTER_BY_NAME': 
         let orderName = action.payload === "asc" ?
          state.recipes.sort(function(a, b){
             if (a.name > b.name) {
@@ -73,7 +73,7 @@ switch (action.type){
 
 
 
-        case 'FILTER_BY_SCORE':
+    case 'FILTER_BY_SCORE':
         let orderScore =
          action.payload === "high" ?
          state.recipes.sort(function (a, b) {
