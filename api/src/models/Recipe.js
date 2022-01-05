@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('recipe', {    //define la tabla 
     ID: {
-      type: DataTypes.UUID,      //genera un numero random con letras y numeros
+      type: DataTypes.UUID,      //genera un numero random con letras y numeros //por defec enteros
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true          

@@ -1,8 +1,9 @@
-const initialState = {
+const initialState = {     
     recipes : [],
+    allRecipes: [],
     detail : [],
-    diets: [],
-    allRecipes: []
+    diets: []
+  
 }
 
 
@@ -12,7 +13,7 @@ switch (action.type){
         return {
         ...state,
         recipes: action.payload,     //en mi estado recipes, manda todo lo que envie la accion getrecipes
-        allRecipes: action.payload
+        allRecipes: action.payload  // el estado que se siempre mantiene con todas las recetas
         }
     
     case 'GET_NAME_RECIPES':
@@ -28,11 +29,11 @@ switch (action.type){
 
     case 'POST_RECIPE':
         return{
-            ...state,
+            ...state,   //post no necesita-> crea en otra ruta
         }
        
     case 'FILTER_BY_DIET':
-            const allRecipes= state.allRecipes
+            const allRecipes= state.allRecipes //copia del estado
             const dietsFilter = action.payload === "All" ? state.allRecipes :
              allRecipes.filter(recipe => recipe.diets.find(diet => {
               //console.log(diet)  
@@ -47,14 +48,14 @@ switch (action.type){
 
     case 'FILTER_BY_NAME': 
         let orderName = action.payload === "asc" ?
-         state.recipes.sort(function(a, b){
+         state.recipes.sort(function(a, b){     //sort-> compara y ordena izq o der d
             if (a.name > b.name) {
                 return 1
                }
             if (b.name > a.name) {
                  return -1
                 }
-                return 0
+                return 0   //si son iguales
 
         }) :
          state.recipes.sort(function(a, b){
@@ -78,11 +79,11 @@ switch (action.type){
          action.payload === "high" ?
          state.recipes.sort(function (a, b) {
 
-          return a.score - b.score;
+          return b.score - a.score;
         }) :
          state.recipes.sort(function (a, b) {
 
-          return b.score - a.score;
+          return a.score - b.score;
         })
       
         return {

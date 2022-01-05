@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "./recipeCreate.module.css";
 
 
-function validate(input) {
+function validate(input) {     //por fuera
     let errors = {};
     if (!input.name) {
         errors.name = "The name of recipe is required";
@@ -22,7 +22,7 @@ function validate(input) {
 export default function RecipeCreate() {
     const dispatch = useDispatch()
     const history = useHistory()
-    const diets = useSelector((state) => state.diets)
+    const diets = useSelector((state) => state.diets) //trae
     const [errors, setError] = useState({})
 
     const [input, setInput] = useState({
@@ -37,7 +37,7 @@ export default function RecipeCreate() {
 
     useEffect(() => {
         dispatch(getDiets())
-    }, [])
+    }, [dispatch])
 
 
     function HandleDelete(el) {
@@ -52,12 +52,12 @@ export default function RecipeCreate() {
     function handleChange(e) {
         setInput({
             ...input,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value  //va tomando el nombre de cada prop, me vaya llenando el estado
         })
-        setError(
+        setError(                          //form
             validate({
                 ...input,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.value,  
             })
         );
     }
@@ -69,12 +69,12 @@ export default function RecipeCreate() {
         })
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e) {  
         e.preventDefault()
-        console.log(input)
+        //console.log(input)
         dispatch(postRecipe(input))
         alert('Receta creada con éxito')
-        setInput({
+        setInput({                            //que matcheen con post
             name: "",
             summary: "",
             image: "",
@@ -84,7 +84,7 @@ export default function RecipeCreate() {
             diet: [],
 
         })
-        history.push('/home')
+        history.push('/home')  //cuando termine -> /home
     }
 
     return (
@@ -120,7 +120,9 @@ export default function RecipeCreate() {
                         <p>Optional Image: </p>
                         <input className={style.input}
                             type="text"
+                            value={input.image}
                             name="image"
+                            placeholder="URL image"
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
@@ -157,11 +159,11 @@ export default function RecipeCreate() {
                 <h3>Select diets </h3>
                 <select className={style.diets}
                     onChange={(e) => handleSelect(e)}>
-                    {diets.map((d) => (
-                        <option value={d.name}>{d.name}</option>
+                    {diets.map((d, index) => (
+                        <option key={index} value={d.name}>{d.name}</option>
                     ))}
                 </select>
-                <ul><li>{input.diets.map(el => el.toUpperCase() + ", ")}</li></ul>
+                <ul><li>{input.diets.map(el => el.toUpperCase() + ", ")}</li></ul> 
                 {input.diets.map(el =>
                     <div className={style.subcontains}>
                         <p>{el}</p>

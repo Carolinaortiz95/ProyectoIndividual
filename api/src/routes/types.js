@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
     ]
 
     diets.forEach(el => {
-        Diet.findOrCreate({
-            where: { name: el }
+        Diet.findOrCreate({ 
+            where: { name: el }  //por cada tipo de dieta
         })
     })
 

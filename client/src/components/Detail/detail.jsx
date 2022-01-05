@@ -1,23 +1,23 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getRecipeDetail } from "../../actions";
 import style from "./detail.module.css"
 
 
-export default function Detail(props) {
+export default function Detail() {
    const dispatch = useDispatch()
    const { id } = useParams()
-   // const [rId, setId] = useState(id)
+   
 
    useEffect(() => {
-      dispatch(getRecipeDetail(id))
+      dispatch(getRecipeDetail(id))  //props.match.params.id
    }, [dispatch, id])
 
    const myRecipe = useSelector(state => state.detail)
 
-   // console.log(myRecipe, 'recetas')
+  
 
    return (
       <div className={style.contains}>
@@ -30,7 +30,7 @@ export default function Detail(props) {
             {myRecipe.length > 0 ?
                <div>
                   <h1 className={style.h1}
-                  >{myRecipe[0].name && myRecipe[0].name}</h1>
+                  >{myRecipe[0].name && myRecipe[0].name}</h1>  
                   <img className={style.img}
                      src={myRecipe[0].image ? myRecipe[0].image : 'https://images.unsplash.com/photo-1542010589005-d1eacc3918f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1492&q=80'} alt="no se encontro la imagen" />
                   <div>
@@ -63,6 +63,6 @@ export default function Detail(props) {
          </div>
       </div>
 
-
+   //detail ->  array de obj
    )
 }

@@ -10,28 +10,29 @@ import style from "./home.module.css";
 
 
 export default function Home() {
-  const dispatch = useDispatch()    //para utilizar la constante e ir despachando mis acciones
-  const allRecipes = useSelector((state) => state.recipes)  //recipes(estado en reducer) useSelector = mapstatetoprops
-  const [currentPage, setCurrentPage] = useState(1) //con useselector traeme en esa const todo lo que esta en el estado de recipes
-  const [orden, setOrden] = useState('')
-  const [orden1, setOrden1] = useState('')
-  const [recipesPerPage, setRecipesPerPage] = useState(9)
-  const iOfLastRecipe = currentPage * recipesPerPage
-  const iOfFirstRecipe = iOfLastRecipe - recipesPerPage
-  const currentRecipes = allRecipes.slice(iOfFirstRecipe, iOfLastRecipe)
 
-  const paginado = (pageNumber) => {
+  const dispatch = useDispatch()    //para utilizar la constante e ir despachando mis acciones
+  const allRecipes = useSelector((state) => state.recipes)  //recipes(estado en reducer) useSelector = mapstatetoprops,con useselector traeme en esa const todo lo que esta en el estado de recipes
+  const [currentPage, setCurrentPage] = useState(1) // lo seteo en 1 porque siempre arranco en la primer pagina
+  const [recipesPerPage, setRecipesPerPage] = useState(9)  //cuantas recetas quiero por pagina, por estado local
+  const iOfLastRecipe = currentPage * recipesPerPage      //pagina actual por cantidad de recetas por pag(indice del ultimo rec que tengo por pag)
+  const iOfFirstRecipe = iOfLastRecipe - recipesPerPage
+  const currentRecipes = allRecipes.slice(iOfFirstRecipe, iOfLastRecipe)   //guarda recetas por pagina -> slice toma una porcion del arreglo que le paso por parametro
+  const [orden, setOrden] = useState('')
+  const [orden1, setOrden1] = useState('') 
+  
+  const paginado = (pageNumber) => {    //para el renderizado del componente
     setCurrentPage(pageNumber)
   }
 
 
-  useEffect(() => {
+  useEffect(() => {            //traigo las recetas cuando el componente se monta.
     dispatch(getRecipes())
-  }, [dispatch])
+  }, [dispatch])              //de lo que depende
 
-  function handleClick(e) {
+  function handleClick(e) {    //le paso el evento..
     e.preventDefault()
-    dispatch(getRecipes())   //resetea 
+    dispatch(getRecipes())   //resetea las recipes
   }
 
   function handleDiets(e) {
@@ -41,9 +42,9 @@ export default function Home() {
 
   function handleOrderByName(e) {
     e.preventDefault()
-    dispatch(filterByName(e.target.value))
+    dispatch(filterByName(e.target.value))  //despacho la action
     setCurrentPage(1)
-    setOrden(`Ordenado ${e.target.value}`)
+    setOrden(`Ordenado ${e.target.value}`)  //para cuando setee la pagina modifique el estado local y se renderice
   }
 
 
@@ -102,20 +103,22 @@ export default function Home() {
 
 
         <div className={style.cards}>
-          {currentRecipes?.map((el) => {
-            return (
+          {currentRecipes?.map((el) => { 
+            return ( 
               <Link className={style.link}
+              key = {el.ID}
                 to={`recipes/${el.ID}`}>
-                <Card key={el.ID} id={el.ID} name={el.name} diet={el.diets} image={el.image ? el.image : <img src='https://image.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg' />} />
+                <Card key = {el.ID} id={el.ID} name={el.name} diet={el.diets} image={el.image}/>
               </Link>
 
-            )
+            ) 
           })
           }
         </div>
-        <Paginado
+        <Paginado 
+        key = {1}
           recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
+          allRecipes={allRecipes.length}   //porque necesito un valor numerico
           paginado={paginado}
         />
       </div>

@@ -58,7 +58,7 @@ const getAllRecipes = async () => {
 router.get('/', async (req, res) => {
     const name = req.query.name    // por nombre 
     const recipesTotal = await getAllRecipes()
-
+  
     if (name) {
         let recipeName = await recipesTotal.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))  //si incluye el nombre que viene por query
         recipeName.length ?
@@ -73,9 +73,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-    const allRecipes = await getAllRecipes();
+    const allRecipes = await getAllRecipes();    //vuelvo a utilizar la funcion
     if (id) {
-        let recipeId = await allRecipes.filter(e => e.ID == id)
+        let recipeId = await allRecipes.filter(e => e.ID == id)   //filtro el id que llega por params
         recipeId.length ?
             res.status(200).json(recipeId) :
             res.status(404).send('No se encontro la receta')

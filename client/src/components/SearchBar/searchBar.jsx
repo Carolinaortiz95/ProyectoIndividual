@@ -12,23 +12,26 @@ export default function SearchBar() {
 
     function handleInputChange(e) {
         e.preventDefault()
-        setName(e.target.value)
+        setName(e.target.value)   //valor del input
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(getNameRecipes(name))
+        dispatch(getNameRecipes(name)) //el estado
+        setName('')
+        
     }
 
     return (
         <div className={style.contains}>
             <input className={style.input}
+                value = {name}
                 type='text'
                 placeholder="Recipe..."
                 onChange={(e) => handleInputChange(e)}
             />
             <button className={style.btnSearch}
-                type='submmit' onClick={(e) => handleSubmit(e)}>Search</button>
+                type='submit' onClick={(e) => handleSubmit(e)} >Search</button>
 
         </div>
     )
