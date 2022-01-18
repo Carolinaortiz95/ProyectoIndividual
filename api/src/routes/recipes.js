@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
     const recipesTotal = await getAllRecipes()
   
     if (name) {
-        let recipeName = await recipesTotal.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))  //si incluye el nombre que viene por query
+        let recipeName = recipesTotal.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))  //si incluye el nombre que viene por query
         recipeName.length ?
             res.status(200).send(recipeName) :
             res.status(404).send("La receta no existe")
@@ -75,7 +75,7 @@ router.get('/:id', async (req, res) => {
     const id = req.params.id;
     const allRecipes = await getAllRecipes();    //vuelvo a utilizar la funcion
     if (id) {
-        let recipeId = await allRecipes.filter(e => e.ID == id)   //filtro el id que llega por params
+        let recipeId = allRecipes.filter(e => e.ID == id)   //filtro el id que llega por params
         recipeId.length ?
             res.status(200).json(recipeId) :
             res.status(404).send('No se encontro la receta')

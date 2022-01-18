@@ -1,4 +1,7 @@
 import axios from "axios";  //imp
+import { bindActionCreators } from "redux";
+//generar archivo de constantes 
+export const GET_CLEAN = "GET_CLEAN"
 
 export function getRecipes() {
   return async function (dispatch) {
@@ -69,11 +72,16 @@ export function getNameRecipes(name) { //por busqueda -> query
 
 export function getRecipeDetail(id) {
   return function (dispatch) {
-    try {
-      var json = axios.get(`http://localhost:3001/recipes/${id}`)
+       axios.get(`http://localhost:3001/recipes/${id}`)
       .then(res => dispatch({type: 'GET_DETAIL', payload: res.data}))
-    } catch (error) {
-      return (error)
+      .catch(err => console.error(err))
+   
     }
+  
+}
+
+export function getClean(){
+  return{
+    type: GET_CLEAN,
   }
 }

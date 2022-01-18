@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getRecipeDetail } from "../../actions";
+import { getRecipeDetail, getClean } from "../../actions";
 import style from "./detail.module.css"
 
 
@@ -13,7 +13,8 @@ export default function Detail() {
 
    useEffect(() => {
       dispatch(getRecipeDetail(id))  //props.match.params.id
-   }, [dispatch, id])
+      return ()=>{dispatch(getClean())}  //BLANQUEO EL ESTADO GLOBAL
+   }, [dispatch, id])                 
 
    const myRecipe = useSelector(state => state.detail)
 

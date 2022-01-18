@@ -1,3 +1,5 @@
+import {GET_CLEAN} from "../actions"
+
 const initialState = {     
     recipes : [],
     allRecipes: [],
@@ -45,6 +47,8 @@ switch (action.type){
                 ...state,
                 recipes: dietsFilter
             } 
+
+
 
     case 'FILTER_BY_NAME': 
         let orderName = action.payload === "asc" ?
@@ -96,6 +100,12 @@ switch (action.type){
             ...state,
             detail: action.payload
         }
+
+    case GET_CLEAN:
+        return{
+            ...state,
+            datail: []
+        }    
       
     default: 
     return state
